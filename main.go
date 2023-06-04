@@ -24,7 +24,6 @@ func areIntSlicesEqual(a, b []int16) bool {
 }
 
 func calcolateCollatzStep(input int16) (int16, error) {
-	// TODO: Write a test for the n == 0 check
 	if input == 0 {
 		err := fmt.Errorf("calcolateCollatzStep: %w", ErrInputZeroToCollatz)
 		return 0, err

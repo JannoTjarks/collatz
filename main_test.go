@@ -23,7 +23,7 @@ func TestCalcolateCollatzStepOddInput(t *testing.T) {
 func TestCalcolateCollatzStepZeroInput(t *testing.T) {
 	got, err := calcolateCollatzStep(0)
 	var want int16 = 0
-	if want != got || err == nil {
+	if err == nil || want != got {
 		t.Fatalf(`calcolateCollatzStep(2) = %d, %v, want %d, error`, got, err, want)
 	}
 }
