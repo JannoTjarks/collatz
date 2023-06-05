@@ -23,9 +23,9 @@ func areIntSlicesEqual(a, b []int16) bool {
 	return true
 }
 
-func calcolateCollatzStep(input int16) (int16, error) {
+func runCollatzOperation(input int16) (int16, error) {
 	if input == 0 {
-		err := fmt.Errorf("calcolateCollatzStep: %w", ErrInputZeroToCollatz)
+		err := fmt.Errorf("runCollatzOperation: %w", ErrInputZeroToCollatz)
 		return 0, err
 	}
 
@@ -37,15 +37,14 @@ func calcolateCollatzStep(input int16) (int16, error) {
 		return (3*input + 1), nil
 	}
 
-	err := fmt.Errorf("calcolateCollatzStep: %w", ErrInvalidInput)
+	err := fmt.Errorf("runCollatzOperation: %w", ErrInvalidInput)
 	return 0, err
 }
 
 func main() {
 	var collatz_sequence []int16
-	collatz_sequence = append(collatz_sequence, 121)
 	for {
-		currentNumber, err := calcolateCollatzStep(collatz_sequence[len(collatz_sequence)-1])
+		currentNumber, err := runCollatzOperation(collatz_sequence[len(collatz_sequence)-1])
 		if err != nil {
 			switch {
 			case errors.Is(err, ErrInputZeroToCollatz):
