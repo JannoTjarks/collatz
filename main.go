@@ -1,9 +1,10 @@
 package main
-
 import (
 	"errors"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 )
 
 var ErrInputZeroToCollatz = errors.New("The number must be unequal zero")
@@ -50,8 +51,25 @@ func runCollatzOperation(input int16) (int16, error) {
 	return 0, err
 }
 
+// TODO: Write Tests for the func parseCommandLineArgumentsToCollatzInput()
+// TODO: Check if the collatzInput is given
+// TODO: Catch a empty array as arguments
+func parseCommandLineArgumentsToCollatzInput(arguments []string) (int16, error) {
+	collatzInput, err := strconv.ParseInt(arguments[0], 10, 16)
+	if err != nil {
+		err := fmt.Errorf("parseCommandLineArgumentsToCollatzInput: %w", ErrInvalidInput)
+		fmt.Println("Error during conversion")
+		return 0, err
+	}
+
+	return int16(collatzInput), nil
+}
+
 func main() {
+	collatzStartValue, _ := parseCommandLineArgumentsToCollatzInput(os.Args[1:])
+
 	var collatz_sequence []int16
+	collatz_sequence = append(collatz_sequence, collatzStartValue)
 	for {
 		currentNumber, err := runCollatzOperation(collatz_sequence[len(collatz_sequence)-1])
 		if err != nil {
