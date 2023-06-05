@@ -1,4 +1,5 @@
 package main
+
 import (
 	"errors"
 	"fmt"
@@ -58,7 +59,6 @@ func parseCommandLineArgumentsToCollatzInput(arguments []string) (int16, error) 
 	collatzInput, err := strconv.ParseInt(arguments[0], 10, 16)
 	if err != nil {
 		err := fmt.Errorf("parseCommandLineArgumentsToCollatzInput: %w", ErrInvalidInput)
-		fmt.Println("Error during conversion")
 		return 0, err
 	}
 
