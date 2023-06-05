@@ -23,6 +23,15 @@ func areIntSlicesEqual(a, b []int16) bool {
 	return true
 }
 
+// TODO: Create Tests for isConjectureFulfilled()
+func isConjectureFulfilled(sequence []int16) (bool, error) {
+	if areIntSlicesEqual(sequence[len(sequence)-3:], []int16{4, 2, 1}) {
+		return true, nil
+	}
+
+	return false, nil
+}
+
 func runCollatzOperation(input int16) (int16, error) {
 	if input == 0 {
 		err := fmt.Errorf("runCollatzOperation: %w", ErrInputZeroToCollatz)
@@ -60,7 +69,8 @@ func main() {
 			continue
 		}
 
-		if areIntSlicesEqual(collatz_sequence[len(collatz_sequence)-3:], []int16{4, 2, 1}) {
+		fulfillment, _ := isConjectureFulfilled(collatz_sequence)
+		if fulfillment == true {
 			break
 		}
 	}
