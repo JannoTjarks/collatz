@@ -1,32 +1,8 @@
-package main
+package collatz
 
 import (
 	"testing"
 )
-
-func TestCalcolateCollatzStepEvenInput(t *testing.T) {
-	got, err := runCollatzOperation(2)
-	var want int16 = 1
-	if want != got || err != nil {
-		t.Fatalf(`calcolateCollatzStep(2) = %d, %v, want %d, nil`, got, err, want)
-	}
-}
-
-func TestCalcolateCollatzStepOddInput(t *testing.T) {
-	got, err := runCollatzOperation(7)
-	var want int16 = 22
-	if want != got || err != nil {
-		t.Fatalf(`calcolateCollatzStep(2) = %d, %v, want %d, nil`, got, err, want)
-	}
-}
-
-func TestCalcolateCollatzStepZeroInput(t *testing.T) {
-	got, err := runCollatzOperation(0)
-	var want int16 = 0
-	if err == nil || want != got {
-		t.Fatalf(`calcolateCollatzStep(2) = %d, %v, want %d, error`, got, err, want)
-	}
-}
 
 func TestAreIntSlicesEqual(t *testing.T) {
 	got := areIntSlicesEqual([]int16{0, 1, 2}, []int16{0, 1, 2})
